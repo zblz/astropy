@@ -71,7 +71,8 @@ def _is_url(string):
 
 def _is_inside(path, parent_path):
     # We have to use realpath to avoid issues with symlinks
-    return os.path.realpath(path).startswith(os.path.realpath(parent_path))
+    return os.path.abspath(path).startswith(os.path.abspath(parent_path)) \
+            or os.path.realpath(path).startswith(os.path.realpath(parent_path))
 
 
 @contextlib.contextmanager
